@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { RGBELoader } from 'three/addons/loaders/RGBELoader.js';
+import { EXRLoader } from 'three/addons/loaders/EXRLoader.js';
 import { Sky } from 'three/addons/objects/Sky.js';
 import { Lensflare, LensflareElement } from 'three/addons/objects/Lensflare.js';
 import {
@@ -221,11 +221,12 @@ export default class Renderer {
 
   /* ---- Public API ---- */
 
+  /** IBL from OpenEXR (zip export `hdr.exr` → `public/env/aec23779_hdr.exr`). */
   async loadEnvironment(onProgress) {
-    const loader = new RGBELoader();
-    const hdr = await loader.loadAsync('/env/outdoor_sky_4k.hdr', onProgress);
-    hdr.mapping = THREE.EquirectangularReflectionMapping;
-    this.scene.environment = hdr;
+    const loader = new EXRLoader();
+    const tex = await loader.loadAsync('/env/aec23779_hdr.exr', onProgress);
+    tex.mapping = THREE.EquirectangularReflectionMapping;
+    this.scene.environment = tex;
   }
 
   setFireActive(active) {

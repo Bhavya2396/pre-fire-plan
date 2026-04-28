@@ -1,3 +1,5 @@
 # Do not upload Git pack files (huge; breaks Vercel 100 MB/file limit)
 .git
 node_modules
+# Built output is produced on Vercel; local dist may contain old large HDR copies
+dist

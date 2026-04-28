@@ -1,0 +1,185 @@
+PRE-FIRE PLAN — TANK 101-A
+================================================================================
+
+DATE: 26/12/2024                                    AUTHOR: Manishankar Pratap
+REVISION: 0                                         APPROVER:
+
+================================================================================
+INCIDENT DESCRIPTION
+================================================================================
+W
+
+================================================================================
+EQUIPMENT & CONTENTS DESCRIPTION
+================================================================================
+
+  Size
+  ----
+  Diameter:  70m
+  Height:    14.4m
+  Volume:    50000 m3
+
+  Contents
+  --------
+  Quantity:                50000 m3
+  Chemical description:    Petroleum crude, Crude oil
+  Properties:              LEL: variable, UEL: variable, Flammable & explosive
+  Flash point:             <19 °C
+  Auto ignition temp:      300 °C to 350 °C (varies depending on specific
+                           compositions)
+
+  Risk: Environmental, Slop over, Fire, vapour cloud formation, rupture,
+        deformation on nearby tanks.
+
+================================================================================
+SPECIAL HAZARD
+================================================================================
+Flammable liquid, toxic by inhalation (at 1000 ppm can cause unconsciousness
+or death), skin irritant, Boil over.
+
+================================================================================
+OPERATIONS RESPONSE
+================================================================================
+
+  • Roof drain to be closed immediately, if possible. Closing of Dyke Valve
+    shall be done to ensure containment of oil inside dyke area.
+
+  • Operation such as receipt/dispense/transfer should be stopped if operation
+    is going on. However, emptying out of tank can be done as per consultation
+    with senior operation personnel.
+
+  • Immediately tank should be isolated in tank manifold and observe the tank
+    for any other abnormalities.
+
+  • Inform Fire & Safety at 333/444/3576 or VHF channel 8 or by breaking
+    nearby MCP.
+
+  • The tank information (Tank Level, Temperature, Transfer status etc.) shall
+    be shared to SIC (F&S) upon their arrival. Roof drain valve, if not closed
+    shall be conveyed to SIC (F&S) to handle the emergency accordingly.
+
+  • Cooling water isolation valve to be opened for cooling purpose if it found
+    necessary. Cooling of adjacent tanks through water monitors is not
+    recommended. However, water shielding from heat radiation can be done from
+    monitors, if required.
+
+  • Product transfer to be started from the affected tank to another tank if
+    sufficient ullage is available in the other tank.
+
+  Post Fire Extinguishment
+  ------------------------
+  • Tank to be emptied out as soon as possible and accumulated oil in the roof
+    to be safely evacuated.
+  • Tank to be handed over to Inspection and Maintenance for necessary
+    rectification of the roof and inspection of tank.
+
+================================================================================
+TACTICAL EMERGENCY RESPONSE
+================================================================================
+
+  1st Turnout Duty:
+  -----------------
+  • Fire tender is parked close to hydrant 10/H-28 along Road no. 10.
+    (Within 3 min)
+
+  • Two 15m hose connected from hydrant 10/H-28 to fire tender. One nearby
+    Hydrant (10/H-27) shall be used for providing foam to HVLRM through JRCP.
+    JRCP placement can be done over the foam tank on fire tender for prompt
+    and easy application of foam.
+
+  • 1 AMC will open the isolation valves for water spray system for adjacent
+    tank (101B). Monitoring of tank's temperature will be done and after
+    significant reduction, decision on closing of valve can be taken based on
+    FW availability, FW network pressure, flame intensity on burning tank,
+    temperature of exposed tank etc.
+
+  • 2 TA will connect 15m hose through JRCP to HVLRM 10/12 to supply
+    finished foam on the top of the tank.
+
+  • SIC will contact control room for 2nd turnout along with HEFG & Trolley
+    mounted foam monitor. (After 3 min from arrival of site). HEFG
+    requirement is for dyke spillage and fire cases.
+
+  After the arrival of 2nd Turnout:
+  ----------------------------------
+  • Park fire tender close to hydrant 12/H-20 along road no. 12.
+
+  • Two 15m hose connected from hydrant 12/H-20 to fire tender.
+
+  • With the help of MEFG (at road no 10&12) finished foam is supplied on
+    tank dyke area in case of dyke spillage/fire.
+
+  • 2 TA will connect 15m hose through JRCP to HVLRM 12/04 to supply
+    finished foam on the top of the tank.
+
+  • 1 AMC will open the isolation valves for water spray system for adjacent
+    tank (101B). Continuous foam application can be done from Fire Tender
+    also, if the throw & range is sufficient.
+
+  • SIC will contact control room for sending foam nurser. (After arrival of
+    2nd turnout). Continuous foam application can be done from Fire Tender
+    also, if the throw & range is sufficient.
+
+  Urgent Evacuation Condition:
+  ----------------------------
+  • As advised by CEC/IC, mainly during pre-indication stage of Boil Over
+    which can be detected by change of Tank shell's paint and increase in
+    flames.
+
+================================================================================
+PROTECTION OF ADJACENT EQUIPMENT
+================================================================================
+
+  40-TT-FR-101B
+
+  • From road no 10 & 12, open isolation valve for Water spray system for
+    even cooling and shielding from radiation.
+
+  • Ensure foam flooding in rim seal area of adjacent Floating roof tank
+    TT-FR-101B.
+
+  In case, wind direction is from north to south we have to use water spray
+  system on the following tanks:
+    • 44-TT-FR-104C (isolation valve on East side of Rd no.15 & South side
+      of Rd no.10 have to be open by 2nd turnout AMC)
+    • 44-TT-FR-102A (isolation valve on West side of Rd no.15 & South side
+      of Rd no.10 have to be open by 2nd turnout AMC).
+
+  The above-mentioned plan is subjected to FW network pressure and Fire Water
+  availability. Otherwise, preference for cooling will be given to storage
+  tanks of lighter products, small storage tanks and empty storage tanks.
+
+================================================================================
+REQUIRED MANPOWER
+================================================================================
+
+  Responder                                     Manpower    Approach
+  ───────────────────────────────────────────────────────────────────────────
+  Shift first-line response (OM&S)                  7       Field cabin to
+                                                            Tank 101A
+  Site brigades (F&S)                               9       1st turnout: 11→8→11A
+                                                            Road 10
+                                                            2nd turnout: 11→8→11A
+                                                            Road 12
+  Local authority brigades (State fire dept)         6       From Rd no-9→8→10
+  Mutual aid partners (IOCL Guwahati,               8       From Rd no-9→8→12
+    Oil India limited)
+
+================================================================================
+REQUIRED EQUIPMENT
+================================================================================
+
+  • Foam tender with proper equipment — 2 nos.
+  • Foam nurser with proper equipment — 1 nos.
+  • Portable MEFG — 2 nos.
+  • Trolley mounted water cum foam HVLR monitor — 2 nos
+  • Hoses (100 mm) — Minimum 2 nos
+  • Hoses (63 mm) — Minimum 10 nos in each fire tender
+  • JRCP — Minimum 5 nos
+
+================================================================================
+MAXIMUM FOAM AND WATER REQUIREMENTS
+================================================================================
+
+  Fire Water required for fighting full surface fire:
+  Foam concentrate required for fighting full surface fire (65 mins):

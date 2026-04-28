@@ -1,0 +1,2638 @@
+{
+  "_doc": {
+    "purpose": "Single source of truth for world layout. WorldBuilder reads this and places GLBs after ProceduralFactory builds ground/dyke/roads/flare/buildings.",
+    "axis": "+X east, -Z north, +Z south, +Y up. Origin at center of dyke compound.",
+    "scaleConvention": "Always prefer targetSize (real-world meters of longest axis). Use scale only when the source GLB is at correct unit scale.",
+    "dykeBounds": "x in [-40, 30], z in [-25, 25] — owned by ProceduralFactory.buildDyke",
+    "tankPads": "Pad A at (-15, -5) r=8, Pad B at (12, -5) r=6 — owned by ProceduralFactory.buildTankPads",
+    "roads": "Road 10 at z=30, Road 12 at z=55, Road 15 at x=35, Service at x=-42",
+    "fixedBuildings": "Admin at (50, 70) 14x10x6, Fire Station at (45, -45) 16x12x7 — owned by ProceduralFactory.buildBlueBuildings"
+  },
+  "positions": {
+    "PLAYER_SPAWN": [
+      0,
+      1.7,
+      18
+    ],
+    "TANK_A": [
+      -15,
+      8,
+      -5
+    ],
+    "TANK_B": [
+      12,
+      6,
+      -5
+    ],
+    "MANIFOLD": [
+      4,
+      0.90,
+      22
+    ],
+    "ROOF_DRAIN": [
+      -15,
+      0.85,
+      4.7
+    ],
+    "ROOF_DRAIN_B": [
+      12,
+      0.85,
+      0
+    ],
+    "DYKE_VALVE": [
+      -26,
+      0.85,
+      24.28
+    ],
+    "COOLING_VALVE": [
+      33,
+      0.85,
+      -3
+    ],
+    "CONTROL": [
+      50,
+      0,
+      65
+    ],
+    "MCP": [
+      50,
+      1.4,
+      64.5
+    ],
+    "HYDRANT_H28": [
+      -15,
+      0,
+      35
+    ],
+    "HYDRANT_H27": [
+      -26,
+      0,
+      35
+    ],
+    "HYDRANT_H20": [
+      17,
+      0,
+      60
+    ],
+    "NOZZLE_AREA": [
+      -12,
+      0,
+      37
+    ],
+    "FIRE_TRUCK_1": [
+      -15,
+      0,
+      38
+    ],
+    "FIRE_TRUCK_2": [
+      17,
+      0,
+      63
+    ],
+    "FIRE_STATION": [
+      45,
+      0,
+      -45
+    ],
+    "SUBSTATION": [
+      -58,
+      0,
+      45
+    ],
+    "STORAGE_YARD": [
+      55,
+      0,
+      75
+    ],
+    "WEST_TANKS": [
+      -58,
+      0,
+      0
+    ],
+    "EAST_TANKS": [
+      50,
+      0,
+      -5
+    ]
+  },
+  "zones": {
+    "TANK_FARM_DYKE": {
+      "description": "Inside the dyke. Two storage tanks centered on the procedural pads, plus the manifold piping at the south end where drain channels converge.",
+      "placements": [
+        {
+          "model": "tank_main",
+          "position": [
+            -15,
+            0,
+            -5
+          ],
+          "targetSize": 16,
+          "rotY": 0,
+          "tags": [
+            "tank",
+            "fire_target"
+          ],
+          "id": "tank_101a",
+          "collision": {
+            "type": "cylinder",
+            "radius": 7.5
+          }
+        },
+        {
+          "model": "tank_secondary",
+          "position": [
+            12,
+            0,
+            -5
+          ],
+          "targetSize": 12,
+          "rotY": 3.14159,
+          "tags": [
+            "tank"
+          ],
+          "id": "tank_101b",
+          "collision": {
+            "type": "cylinder",
+            "radius": 5.5
+          }
+        },
+        {
+          "model": "industrial_valve",
+          "position": [
+            -1,
+            0,
+            22
+          ],
+          "targetSize": 1.8,
+          "rotY": 0,
+          "tags": [
+            "interactable",
+            "valve",
+            "manifold"
+          ],
+          "id": "manifold_valve"
+        },
+        {
+          "model": "padlock",
+          "position": [
+            -1,
+            0,
+            22
+          ],
+          "targetSize": 0.22,
+          "rotY": 0,
+          "yOffset": 1.3,
+          "tags": [
+            "interactable",
+            "loto"
+          ],
+          "id": "manifold_padlock"
+        },
+        {
+          "model": "pipe_kit",
+          "position": [
+            -3,
+            0,
+            22
+          ],
+          "targetSize": 2.5,
+          "rotY": 0,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "pipe_kit",
+          "position": [
+            3,
+            0,
+            22
+          ],
+          "targetSize": 2.5,
+          "rotY": 1.5708,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "butterfly_valve",
+          "position": [
+            -15,
+            0,
+            2
+          ],
+          "targetSize": 1.4,
+          "rotY": 0,
+          "yOffset": 0.7,
+          "tags": [
+            "interactable",
+            "valve",
+            "roof_drain"
+          ],
+          "id": "roof_drain_valve"
+        },
+        {
+          "model": "butterfly_valve",
+          "position": [
+            12,
+            0,
+            0
+          ],
+          "targetSize": 1.2,
+          "rotY": 0,
+          "yOffset": 0.7,
+          "tags": [
+            "interactable",
+            "valve",
+            "roof_drain"
+          ],
+          "id": "roof_drain_valve_b"
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            -1,
+            0,
+            18
+          ],
+          "targetSize": 4,
+          "rotY": 0,
+          "tags": [
+            "pipe"
+          ]
+        }
+      ]
+    },
+    "DYKE_DRAIN": {
+      "description": "South-west corner of dyke wall: gate valve handwheel for emergency dyke drain.",
+      "placements": [
+        {
+          "model": "gate_valve",
+          "position": [
+            -42,
+            0,
+            18
+          ],
+          "targetSize": 1.6,
+          "rotY": 1.5708,
+          "tags": [
+            "interactable",
+            "valve",
+            "dyke_drain"
+          ],
+          "id": "dyke_drain_valve"
+        }
+      ]
+    },
+    "COOLING_WATER_VALVE": {
+      "description": "Outside east dyke wall: cooling-water inlet valve for tank 101-B (CW-101B).",
+      "placements": [
+        {
+          "model": "industrial_valve",
+          "position": [
+            32,
+            0,
+            -5
+          ],
+          "targetSize": 1.8,
+          "rotY": 1.5708,
+          "tags": [
+            "interactable",
+            "valve",
+            "cooling_water"
+          ],
+          "id": "cooling_water_valve"
+        }
+      ]
+    },
+    "PROCESS_BACKDROP_NORTH": {
+      "description": "Process plant horizon line beyond the dyke north wall. Distillation column anchors the silhouette; cooling towers and heat exchangers fill the mid-distance; an industrial-plant block fills the deep background.",
+      "placements": [
+        {
+          "model": "distillation_column",
+          "position": [
+            5,
+            0,
+            -65
+          ],
+          "targetSize": 24,
+          "rotY": 0,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 6
+          }
+        },
+        {
+          "model": "cooling_tower",
+          "position": [
+            -30,
+            0,
+            -55
+          ],
+          "targetSize": 12,
+          "rotY": 0,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.7
+          }
+        },
+        {
+          "model": "cooling_tower",
+          "position": [
+            -18,
+            0,
+            -65
+          ],
+          "targetSize": 11,
+          "rotY": 0.6,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.7
+          }
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            28,
+            0,
+            -50
+          ],
+          "targetSize": 6,
+          "rotY": 1.5708,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            35,
+            0,
+            -55
+          ],
+          "targetSize": 6,
+          "rotY": 1.5708,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "distillation_column",
+          "position": [
+            -40,
+            0,
+            -80
+          ],
+          "targetSize": 20,
+          "rotY": 0.8,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 5
+          }
+        }
+      ]
+    },
+    "PIPE_RACK_CORRIDOR": {
+      "description": "Pipe-rack corridor between the dyke north wall and the process backdrop. The green tunnel covered walkway is the NRL signature landmark. The industrial plant sits directly behind it as a dense process backdrop.",
+      "placements": [
+        {
+          "model": "pipeline",
+          "position": [
+            12,
+            0,
+            -28
+          ],
+          "targetSize": 6,
+          "rotY": 1.5708,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            -12,
+            0,
+            -28
+          ],
+          "targetSize": 5,
+          "rotY": 1.5708,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "green_tunnel",
+          "position": [
+            0,
+            0,
+            -30
+          ],
+          "targetSize": 48,
+          "rotY": 1.5708,
+          "tags": [
+            "walkway",
+            "landmark",
+            "nrl_signature"
+          ],
+          "id": "green_tunnel_main"
+        },
+        {
+          "model": "industrial_plant",
+          "position": [
+            5,
+            0,
+            -65
+          ],
+          "scale": [
+            84,
+            60,
+            28
+          ],
+          "rotY": 0,
+          "tags": [
+            "backdrop",
+            "process"
+          ],
+          "_note": "Doubled-scale process-block backdrop — fills the north horizon behind the column row"
+        }
+      ]
+    },
+    "ROAD_10_HYDRANT_BAY": {
+      "description": "South kerb of Road 10 — H-28 (closest to fire tank) and H-27, with hose kits, nozzles and traffic cones marking the pickup.",
+      "placements": [
+        {
+          "model": "fire_hydrant",
+          "position": [
+            -15,
+            0,
+            35
+          ],
+          "targetSize": 1,
+          "rotY": 0,
+          "tags": [
+            "interactable",
+            "hydrant"
+          ],
+          "id": "h_28"
+        },
+        {
+          "model": "fire_hydrant",
+          "position": [
+            -26,
+            0,
+            35
+          ],
+          "targetSize": 1,
+          "rotY": 0,
+          "tags": [
+            "interactable",
+            "hydrant"
+          ],
+          "id": "h_27"
+        },
+        {
+          "model": "water_hose",
+          "position": [
+            -14.5,
+            0,
+            36
+          ],
+          "targetSize": 0.6,
+          "rotY": 0.5,
+          "tags": [
+            "interactable",
+            "equipment"
+          ],
+          "id": "hose_h28"
+        },
+        {
+          "model": "fire_nozzle",
+          "position": [
+            -14,
+            0,
+            36.4
+          ],
+          "targetSize": 0.35,
+          "rotY": 0.3,
+          "tags": [
+            "interactable",
+            "equipment"
+          ],
+          "id": "nozzle_h28"
+        },
+        {
+          "model": "hydrant_key",
+          "position": [
+            -13.5,
+            0,
+            36
+          ],
+          "targetSize": 0.45,
+          "rotY": 0,
+          "yOffset": 0.5,
+          "tags": [
+            "interactable",
+            "equipment"
+          ],
+          "id": "hyd_key_h28"
+        },
+        {
+          "model": "fire_extinguisher",
+          "position": [
+            -18,
+            0,
+            36
+          ],
+          "targetSize": 1.1,
+          "rotY": 0,
+          "tags": [
+            "interactable",
+            "equipment"
+          ]
+        },
+        {
+          "model": "traffic_cone",
+          "position": [
+            -11,
+            0,
+            33
+          ],
+          "targetSize": 0.7,
+          "rotY": 0
+        },
+        {
+          "model": "traffic_cone",
+          "position": [
+            -19,
+            0,
+            33
+          ],
+          "targetSize": 0.7,
+          "rotY": 0
+        },
+        {
+          "model": "traffic_cone",
+          "position": [
+            -29,
+            0,
+            33
+          ],
+          "targetSize": 0.7,
+          "rotY": 0
+        }
+      ]
+    },
+    "ROAD_12_HYDRANT_BAY": {
+      "description": "South kerb of Road 12 — H-20 with hose kit and nozzles for second-turnout deployment toward 101-B.",
+      "placements": [
+        {
+          "model": "fire_hydrant",
+          "position": [
+            17,
+            0,
+            60
+          ],
+          "targetSize": 1,
+          "rotY": 0,
+          "tags": [
+            "interactable",
+            "hydrant"
+          ],
+          "id": "h_20"
+        },
+        {
+          "model": "water_hose",
+          "position": [
+            18,
+            0,
+            60
+          ],
+          "targetSize": 0.6,
+          "rotY": -0.5,
+          "tags": [
+            "interactable",
+            "equipment"
+          ],
+          "id": "hose_h20"
+        },
+        {
+          "model": "fire_nozzle",
+          "position": [
+            18.5,
+            0,
+            60.4
+          ],
+          "targetSize": 0.35,
+          "rotY": 0.3,
+          "tags": [
+            "interactable",
+            "equipment"
+          ],
+          "id": "nozzle_h20"
+        },
+        {
+          "model": "hydrant_key",
+          "position": [
+            18.5,
+            0,
+            60.5
+          ],
+          "targetSize": 0.45,
+          "rotY": 0,
+          "yOffset": 0.5,
+          "tags": [
+            "interactable",
+            "equipment"
+          ]
+        },
+        {
+          "model": "fire_extinguisher",
+          "position": [
+            14,
+            0,
+            61
+          ],
+          "targetSize": 1.1,
+          "rotY": 0,
+          "tags": [
+            "interactable",
+            "equipment"
+          ]
+        },
+        {
+          "model": "traffic_cone",
+          "position": [
+            21,
+            0,
+            58
+          ],
+          "targetSize": 0.7,
+          "rotY": 0
+        },
+        {
+          "model": "traffic_cone",
+          "position": [
+            13,
+            0,
+            58
+          ],
+          "targetSize": 0.7,
+          "rotY": 0
+        }
+      ]
+    },
+    "PERIMETER_HYDRANTS": {
+      "description": "Extra hydrants around the perimeter so the player always has one in sight (defence-in-depth).",
+      "placements": [
+        {
+          "model": "fire_hydrant",
+          "position": [
+            45,
+            0,
+            20
+          ],
+          "targetSize": 1,
+          "rotY": 3.14159,
+          "tags": [
+            "hydrant"
+          ]
+        },
+        {
+          "model": "fire_hydrant",
+          "position": [
+            -50,
+            0,
+            20
+          ],
+          "targetSize": 1,
+          "rotY": 0,
+          "tags": [
+            "hydrant"
+          ]
+        },
+        {
+          "model": "fire_hydrant",
+          "position": [
+            40,
+            0,
+            -25
+          ],
+          "targetSize": 1,
+          "rotY": 1.5708,
+          "tags": [
+            "hydrant"
+          ]
+        }
+      ]
+    },
+    "CONTROL_AREA": {
+      "description": "Player's home base. Admin building (procedural) anchors this. Walkie-talkie, MCP, hydrant key and extinguishers are reachable from the south face of the building (player-spawn-side).",
+      "placements": [
+        {
+          "model": "control_station",
+          "position": [
+            50,
+            0,
+            60
+          ],
+          "targetSize": 5,
+          "rotY": 0,
+          "tags": [
+            "control"
+          ],
+          "id": "outdoor_control_station"
+        },
+        {
+          "model": "fire_alarm_button",
+          "position": [
+            50,
+            0,
+            65
+          ],
+          "targetSize": 0.22,
+          "rotY": 3.14159,
+          "yOffset": 1.3,
+          "tags": [
+            "interactable",
+            "alarm",
+            "mcp"
+          ],
+          "id": "manual_call_point"
+        },
+        {
+          "model": "walkie_talkie",
+          "position": [
+            52,
+            0,
+            65
+          ],
+          "targetSize": 0.28,
+          "rotY": 3.14159,
+          "yOffset": 0.9,
+          "tags": [
+            "interactable",
+            "radio"
+          ],
+          "id": "emergency_radio"
+        },
+        {
+          "model": "hydrant_key",
+          "position": [
+            53.2,
+            0,
+            65
+          ],
+          "targetSize": 0.45,
+          "rotY": 0,
+          "yOffset": 0.85,
+          "tags": [
+            "interactable",
+            "equipment"
+          ],
+          "id": "hyd_key_control"
+        },
+        {
+          "model": "fire_extinguisher",
+          "position": [
+            46,
+            0,
+            64.5
+          ],
+          "targetSize": 1.1,
+          "rotY": 3.14159,
+          "tags": [
+            "interactable",
+            "equipment"
+          ]
+        },
+        {
+          "model": "fire_extinguisher",
+          "position": [
+            54,
+            0,
+            64.5
+          ],
+          "targetSize": 1.1,
+          "rotY": 3.14159,
+          "tags": [
+            "interactable",
+            "equipment"
+          ]
+        }
+      ]
+    },
+    "FIRE_STATION_BAY": {
+      "description": "Fire station building (procedural at (45, -45)) is where firefighters originate. Apron clear for truck spawn. Old shed adds visual mass to the east.",
+      "placements": [
+        {
+          "model": "old_shed",
+          "position": [
+            62,
+            0,
+            -40
+          ],
+          "targetSize": 16,
+          "rotY": 1.5708,
+          "tags": [
+            "building"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "fire_extinguisher",
+          "position": [
+            42,
+            0,
+            -35
+          ],
+          "targetSize": 1.1,
+          "rotY": 0,
+          "tags": [
+            "equipment"
+          ]
+        },
+        {
+          "model": "fire_extinguisher",
+          "position": [
+            38,
+            0,
+            -52
+          ],
+          "targetSize": 1.1,
+          "rotY": 3.14159,
+          "tags": [
+            "equipment"
+          ]
+        },
+        {
+          "model": "traffic_cone",
+          "position": [
+            36,
+            0,
+            -38
+          ],
+          "targetSize": 0.7,
+          "rotY": 0
+        },
+        {
+          "model": "traffic_cone",
+          "position": [
+            36,
+            0,
+            -42
+          ],
+          "targetSize": 0.7,
+          "rotY": 0
+        },
+        {
+          "model": "traffic_cone",
+          "position": [
+            36,
+            0,
+            -50
+          ],
+          "targetSize": 0.7,
+          "rotY": 0
+        }
+      ]
+    },
+    "EAST_PROCESS_CORRIDOR": {
+      "description": "Process equipment running north along the east side of the plant, visible from the dyke east wall and Road 15. Second distillation column + satellite heat exchangers + catwalk connection.",
+      "placements": [
+        {
+          "model": "distillation_column",
+          "position": [
+            52,
+            0,
+            -62
+          ],
+          "targetSize": 22,
+          "rotY": 0.5,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 5.5
+          }
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            55,
+            0,
+            -38
+          ],
+          "targetSize": 6,
+          "rotY": 0,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            55,
+            0,
+            -46
+          ],
+          "targetSize": 5.5,
+          "rotY": 1.5708,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "chemical_tank",
+          "position": [
+            55,
+            0,
+            -26
+          ],
+          "targetSize": 9,
+          "rotY": 0,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 3.2
+          }
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            52,
+            0,
+            -32
+          ],
+          "targetSize": 5.5,
+          "rotY": 0,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "light_tower",
+          "position": [
+            58,
+            0,
+            -42
+          ],
+          "targetSize": 13,
+          "rotY": 0
+        }
+      ]
+    },
+    "WEST_PROCESS_BACKDROP": {
+      "description": "Heavy process cluster west of the service road, filling the west horizon line. Cooling tower + heat exchanger + maintenance shed.",
+      "placements": [
+        {
+          "model": "cooling_tower",
+          "position": [
+            -62,
+            0,
+            -38
+          ],
+          "targetSize": 14,
+          "rotY": 0.3,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.75
+          }
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            -52,
+            0,
+            -28
+          ],
+          "targetSize": 6,
+          "rotY": 1.5708,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "old_shed",
+          "position": [
+            -70,
+            0,
+            -18
+          ],
+          "targetSize": 14,
+          "rotY": 0,
+          "tags": [
+            "building"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            -55,
+            0,
+            -20
+          ],
+          "targetSize": 5,
+          "rotY": 0,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            -48,
+            0,
+            -14
+          ],
+          "targetSize": 4.5,
+          "rotY": 1.5708,
+          "tags": [
+            "pipe"
+          ]
+        }
+      ]
+    },
+    "SUBSTATION_WEST": {
+      "description": "Electrical substation downwind of the tank farm (west). Transformer + diesel backup generator. Chained off with jersey barriers.",
+      "placements": [
+        {
+          "model": "transformer",
+          "position": [
+            -58,
+            0,
+            45
+          ],
+          "targetSize": 4,
+          "rotY": 0,
+          "tags": [
+            "utility"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.8
+          }
+        },
+        {
+          "model": "diesel_generator",
+          "position": [
+            -50,
+            0,
+            50
+          ],
+          "targetSize": 4.5,
+          "rotY": 0,
+          "tags": [
+            "utility"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.8
+          }
+        },
+        {
+          "model": "fire_extinguisher",
+          "position": [
+            -52,
+            0,
+            42
+          ],
+          "targetSize": 1.1,
+          "rotY": 0,
+          "tags": [
+            "equipment"
+          ]
+        }
+      ]
+    },
+    "WEST_TANK_CLUSTER": {
+      "description": "Chemical tank pair inside the procedural west enclosure. Third smaller tank added for density. Light tower covers both bays.",
+      "placements": [
+        {
+          "model": "chemical_tank",
+          "position": [
+            -58,
+            0,
+            7
+          ],
+          "targetSize": 9,
+          "rotY": 0,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 3
+          }
+        },
+        {
+          "model": "chemical_tank",
+          "position": [
+            -58,
+            0,
+            -6
+          ],
+          "targetSize": 9,
+          "rotY": 1.5708,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 3
+          }
+        },
+        {
+          "model": "chemical_tank",
+          "position": [
+            -68,
+            0,
+            2
+          ],
+          "targetSize": 6.5,
+          "rotY": 0.8,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 2.2
+          }
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            -62,
+            0,
+            1
+          ],
+          "targetSize": 4,
+          "rotY": 0,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "light_tower",
+          "position": [
+            -68,
+            0,
+            12
+          ],
+          "targetSize": 14,
+          "rotY": 0
+        },
+        {
+          "model": "fire_extinguisher",
+          "position": [
+            -53,
+            0,
+            8
+          ],
+          "targetSize": 1.1,
+          "rotY": 1.5708,
+          "tags": [
+            "equipment"
+          ]
+        }
+      ]
+    },
+    "EAST_TANK_CLUSTER": {
+      "description": "Large oil tank + second smaller tank inside the procedural east enclosure. Pipeline connecting them. Two light towers.",
+      "placements": [
+        {
+          "model": "oil_tank",
+          "position": [
+            50,
+            0,
+            -5
+          ],
+          "targetSize": 18,
+          "rotY": 0,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 6
+          }
+        },
+        {
+          "model": "chemical_tank",
+          "position": [
+            62,
+            0,
+            -10
+          ],
+          "targetSize": 8,
+          "rotY": 0.5,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 2.8
+          }
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            57,
+            0,
+            -7
+          ],
+          "targetSize": 4.5,
+          "rotY": 0,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "light_tower",
+          "position": [
+            58,
+            0,
+            6
+          ],
+          "targetSize": 14,
+          "rotY": 0
+        }
+      ]
+    },
+    "CONTROL_AREA_INTERIOR": {
+      "description": "Control desk inside the admin area — the field panel the operator works from before walking to execute SOPs.",
+      "placements": [
+        {
+          "model": "control_desk",
+          "position": [
+            50,
+            0,
+            72
+          ],
+          "targetSize": 3.5,
+          "rotY": 3.14159,
+          "tags": [
+            "control"
+          ]
+        }
+      ]
+    },
+    "STORAGE_YARD": {
+      "description": "Shipping container stacks south-east of Road 12. Two groups for visual density.",
+      "placements": [
+        {
+          "model": "containers",
+          "position": [
+            58,
+            0,
+            80
+          ],
+          "targetSize": 32,
+          "rotY": 0,
+          "tags": [
+            "storage"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "containers",
+          "position": [
+            62,
+            0,
+            65
+          ],
+          "targetSize": 20,
+          "rotY": 1.5708,
+          "tags": [
+            "storage"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        }
+      ]
+    },
+    "SOUTH_PERIMETER_FILL": {
+      "description": "South end of compound — warehouses, sheds, and marker cones framing the south boundary below Road 12.",
+      "placements": [
+        {
+          "model": "old_shed",
+          "position": [
+            -45,
+            0,
+            75
+          ],
+          "targetSize": 16,
+          "rotY": 0,
+          "tags": [
+            "building"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "warehouse",
+          "position": [
+            25,
+            0,
+            82
+          ],
+          "targetSize": 22,
+          "rotY": 0,
+          "tags": [
+            "building"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "fire_extinguisher",
+          "position": [
+            -10,
+            0,
+            68
+          ],
+          "targetSize": 1.1,
+          "rotY": 0,
+          "tags": [
+            "equipment"
+          ]
+        },
+        {
+          "model": "fire_extinguisher",
+          "position": [
+            10,
+            0,
+            68
+          ],
+          "targetSize": 1.1,
+          "rotY": 0,
+          "tags": [
+            "equipment"
+          ]
+        },
+        {
+          "model": "traffic_cone",
+          "position": [
+            -35,
+            0,
+            57
+          ],
+          "targetSize": 0.7,
+          "rotY": 0
+        },
+        {
+          "model": "traffic_cone",
+          "position": [
+            35,
+            0,
+            57
+          ],
+          "targetSize": 0.7,
+          "rotY": 0
+        },
+        {
+          "model": "traffic_cone",
+          "position": [
+            -8,
+            0,
+            67
+          ],
+          "targetSize": 0.7,
+          "rotY": 0
+        },
+        {
+          "model": "traffic_cone",
+          "position": [
+            8,
+            0,
+            67
+          ],
+          "targetSize": 0.7,
+          "rotY": 0
+        },
+        {
+          "model": "jersey_barrier",
+          "position": [
+            -15,
+            0,
+            58
+          ],
+          "targetSize": 3.5,
+          "rotY": 0
+        },
+        {
+          "model": "jersey_barrier",
+          "position": [
+            25,
+            0,
+            58
+          ],
+          "targetSize": 3.5,
+          "rotY": 0
+        }
+      ]
+    },
+    "PERIMETER_BUILDINGS": {
+      "description": "Perimeter warehouses + derelict shed that fill the horizon on all sides and frame the playable area.",
+      "placements": [
+        {
+          "model": "abandoned_warehouse",
+          "position": [
+            -75,
+            0,
+            52
+          ],
+          "targetSize": 24,
+          "rotY": 1.5708,
+          "tags": [
+            "building"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "abandoned_warehouse",
+          "position": [
+            -78,
+            0,
+            -5
+          ],
+          "targetSize": 20,
+          "rotY": 0,
+          "tags": [
+            "building"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "warehouse",
+          "position": [
+            72,
+            0,
+            80
+          ],
+          "targetSize": 26,
+          "rotY": 3.14159,
+          "tags": [
+            "building"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "old_shed",
+          "position": [
+            -72,
+            0,
+            30
+          ],
+          "targetSize": 12,
+          "rotY": 1.5708,
+          "tags": [
+            "building"
+          ]
+        }
+      ]
+    },
+    "ROAD_BARRIERS": {
+      "description": "Jersey barriers placed only on the FAR kerbs (away from player walking lines) so they channel traffic without blocking the trainee.",
+      "placements": [
+        {
+          "model": "jersey_barrier",
+          "position": [
+            -30,
+            0,
+            26
+          ],
+          "targetSize": 3.5,
+          "rotY": 0
+        },
+        {
+          "model": "jersey_barrier",
+          "position": [
+            30,
+            0,
+            26
+          ],
+          "targetSize": 3.5,
+          "rotY": 0
+        },
+        {
+          "model": "jersey_barrier",
+          "position": [
+            -30,
+            0,
+            51
+          ],
+          "targetSize": 3.5,
+          "rotY": 0
+        },
+        {
+          "model": "jersey_barrier",
+          "position": [
+            30,
+            0,
+            51
+          ],
+          "targetSize": 3.5,
+          "rotY": 0
+        }
+      ]
+    },
+    "NORTH_COLUMN_ROW": {
+      "description": "Dense NRL-style column row running east-west at z -70 to -85. Three distillation columns anchor the skyline; cooling towers flank them; heat exchangers and pipeline manifolds pack the inter-column gaps, connected by elevated catwalks.",
+      "placements": [
+        {
+          "model": "distillation_column",
+          "position": [
+            -28,
+            0,
+            -72
+          ],
+          "targetSize": 20,
+          "rotY": 0.2,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 5
+          }
+        },
+        {
+          "model": "distillation_column",
+          "position": [
+            22,
+            0,
+            -78
+          ],
+          "targetSize": 22,
+          "rotY": 0,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 5.5
+          }
+        },
+        {
+          "model": "distillation_column",
+          "position": [
+            -8,
+            0,
+            -85
+          ],
+          "targetSize": 18,
+          "rotY": 0.5,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 4.5
+          }
+        },
+        {
+          "model": "cooling_tower",
+          "position": [
+            -42,
+            0,
+            -72
+          ],
+          "targetSize": 13,
+          "rotY": 0.3,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.75
+          }
+        },
+        {
+          "model": "cooling_tower",
+          "position": [
+            32,
+            0,
+            -70
+          ],
+          "targetSize": 11,
+          "rotY": 0,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.75
+          }
+        },
+        {
+          "model": "cooling_tower",
+          "position": [
+            12,
+            0,
+            -85
+          ],
+          "targetSize": 12,
+          "rotY": 0.8,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.75
+          }
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            -22,
+            0,
+            -72
+          ],
+          "targetSize": 6,
+          "rotY": 1.5708,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            -35,
+            0,
+            -64
+          ],
+          "targetSize": 5.5,
+          "rotY": 0,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            16,
+            0,
+            -72
+          ],
+          "targetSize": 6,
+          "rotY": 1.5708,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            28,
+            0,
+            -82
+          ],
+          "targetSize": 5.5,
+          "rotY": 0,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            -18,
+            0,
+            -68
+          ],
+          "targetSize": 6,
+          "rotY": 1.5708,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            0,
+            0,
+            -70
+          ],
+          "targetSize": 5.5,
+          "rotY": 1.5708,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            20,
+            0,
+            -68
+          ],
+          "targetSize": 5,
+          "rotY": 1.5708,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "light_tower",
+          "position": [
+            -38,
+            0,
+            -82
+          ],
+          "targetSize": 14,
+          "rotY": 0
+        },
+        {
+          "model": "light_tower",
+          "position": [
+            28,
+            0,
+            -70
+          ],
+          "targetSize": 13,
+          "rotY": 0
+        }
+      ]
+    },
+    "NW_DEEP_PROCESS": {
+      "description": "Far north-west process quad (x -55 to -82, z -38 to -82). Two cooling towers bracket a distillation column; two oil tanks sit behind them; pipe runs and exchangers fill the gaps. Abandoned warehouse closes the north-west corner.",
+      "placements": [
+        {
+          "model": "distillation_column",
+          "position": [
+            -72,
+            0,
+            -58
+          ],
+          "targetSize": 19,
+          "rotY": 0.4,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 5
+          }
+        },
+        {
+          "model": "cooling_tower",
+          "position": [
+            -65,
+            0,
+            -60
+          ],
+          "targetSize": 14,
+          "rotY": 0.3,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.75
+          }
+        },
+        {
+          "model": "cooling_tower",
+          "position": [
+            -78,
+            0,
+            -42
+          ],
+          "targetSize": 12,
+          "rotY": 0,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.75
+          }
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            -55,
+            0,
+            -48
+          ],
+          "targetSize": 6,
+          "rotY": 1.5708,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            -68,
+            0,
+            -42
+          ],
+          "targetSize": 5.5,
+          "rotY": 0,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "oil_tank",
+          "position": [
+            -75,
+            0,
+            -70
+          ],
+          "targetSize": 15,
+          "rotY": 0,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 5.5
+          }
+        },
+        {
+          "model": "oil_tank",
+          "position": [
+            -60,
+            0,
+            -74
+          ],
+          "targetSize": 12,
+          "rotY": 1.2,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 4.5
+          }
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            -60,
+            0,
+            -58
+          ],
+          "targetSize": 5,
+          "rotY": 0,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            -70,
+            0,
+            -48
+          ],
+          "targetSize": 4.5,
+          "rotY": 1.5708,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "chemical_tank",
+          "position": [
+            -82,
+            0,
+            -28
+          ],
+          "targetSize": 8,
+          "rotY": 0.6,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 2.8
+          }
+        },
+        {
+          "model": "abandoned_warehouse",
+          "position": [
+            -80,
+            0,
+            -30
+          ],
+          "targetSize": 20,
+          "rotY": 0,
+          "tags": [
+            "building"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "light_tower",
+          "position": [
+            -72,
+            0,
+            -70
+          ],
+          "targetSize": 14,
+          "rotY": 0
+        }
+      ]
+    },
+    "NE_DEEP_PROCESS": {
+      "description": "Far north-east process quad (x 62 to 80, z -30 to -82). Mirrors the NW cluster: one tall distillation column, cooling tower, two oil tanks, heat exchangers, pipe runs. Abandoned warehouse closes the corner.",
+      "placements": [
+        {
+          "model": "distillation_column",
+          "position": [
+            68,
+            0,
+            -60
+          ],
+          "targetSize": 20,
+          "rotY": 0.6,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 5
+          }
+        },
+        {
+          "model": "cooling_tower",
+          "position": [
+            72,
+            0,
+            -42
+          ],
+          "targetSize": 13,
+          "rotY": 0.3,
+          "tags": [
+            "process",
+            "backdrop"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.75
+          }
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            62,
+            0,
+            -48
+          ],
+          "targetSize": 6,
+          "rotY": 1.5708,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            72,
+            0,
+            -70
+          ],
+          "targetSize": 5.5,
+          "rotY": 0,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "oil_tank",
+          "position": [
+            65,
+            0,
+            -74
+          ],
+          "targetSize": 14,
+          "rotY": 0,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 5
+          }
+        },
+        {
+          "model": "oil_tank",
+          "position": [
+            76,
+            0,
+            -55
+          ],
+          "targetSize": 10,
+          "rotY": 0.8,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 3.5
+          }
+        },
+        {
+          "model": "chemical_tank",
+          "position": [
+            78,
+            0,
+            -30
+          ],
+          "targetSize": 8,
+          "rotY": 1,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 2.8
+          }
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            62,
+            0,
+            -56
+          ],
+          "targetSize": 5.5,
+          "rotY": 0,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            68,
+            0,
+            -38
+          ],
+          "targetSize": 5,
+          "rotY": 1.5708,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "abandoned_warehouse",
+          "position": [
+            78,
+            0,
+            -25
+          ],
+          "targetSize": 22,
+          "rotY": 3.14159,
+          "tags": [
+            "building"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "light_tower",
+          "position": [
+            72,
+            0,
+            -58
+          ],
+          "targetSize": 14,
+          "rotY": 0
+        }
+      ]
+    },
+    "CENTRAL_MID_PROCESS": {
+      "description": "Mid-facility process density at z -42 to -62. Catwalks bridge the gaps between the column row and the pipe-rack corridor; heat exchangers and pipeline manifolds pack the interstitial space.",
+      "placements": [
+        {
+          "model": "heat_exchanger",
+          "position": [
+            -45,
+            0,
+            -50
+          ],
+          "targetSize": 6,
+          "rotY": 0,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            35,
+            0,
+            -62
+          ],
+          "targetSize": 5.5,
+          "rotY": 1.5708,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "heat_exchanger",
+          "position": [
+            -18,
+            0,
+            -55
+          ],
+          "targetSize": 5,
+          "rotY": 0.8,
+          "tags": [
+            "process"
+          ]
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            -35,
+            0,
+            -52
+          ],
+          "targetSize": 5,
+          "rotY": 0,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            18,
+            0,
+            -48
+          ],
+          "targetSize": 5,
+          "rotY": 1.5708,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            -22,
+            0,
+            -58
+          ],
+          "targetSize": 5.5,
+          "rotY": 0,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            8,
+            0,
+            -48
+          ],
+          "targetSize": 4.5,
+          "rotY": 1.5708,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "oil_tank",
+          "position": [
+            -48,
+            0,
+            -62
+          ],
+          "targetSize": 11,
+          "rotY": 0,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 4
+          }
+        },
+        {
+          "model": "chemical_tank",
+          "position": [
+            42,
+            0,
+            -62
+          ],
+          "targetSize": 8,
+          "rotY": 0.4,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 2.8
+          }
+        }
+      ]
+    },
+    "FAR_SOUTH_MISC": {
+      "description": "Far south perimeter filling — maintenance sheds, extra warehouse and chemical storage that frame the south boundary beyond the admin-and-hydrant zone.",
+      "placements": [
+        {
+          "model": "old_shed",
+          "position": [
+            -62,
+            0,
+            72
+          ],
+          "targetSize": 14,
+          "rotY": 0,
+          "tags": [
+            "building"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "old_shed",
+          "position": [
+            0,
+            0,
+            88
+          ],
+          "targetSize": 12,
+          "rotY": 1.5708,
+          "tags": [
+            "building"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "abandoned_warehouse",
+          "position": [
+            -30,
+            0,
+            88
+          ],
+          "targetSize": 18,
+          "rotY": 0,
+          "tags": [
+            "building"
+          ],
+          "collision": {
+            "type": "box",
+            "shrink": 0.85
+          }
+        },
+        {
+          "model": "chemical_tank",
+          "position": [
+            38,
+            0,
+            85
+          ],
+          "targetSize": 8,
+          "rotY": 0,
+          "tags": [
+            "tank"
+          ],
+          "collision": {
+            "type": "cylinder",
+            "radius": 2.8
+          }
+        },
+        {
+          "model": "pipeline",
+          "position": [
+            30,
+            0,
+            80
+          ],
+          "targetSize": 4,
+          "rotY": 1.5708,
+          "tags": [
+            "pipe"
+          ]
+        },
+        {
+          "model": "fire_extinguisher",
+          "position": [
+            -58,
+            0,
+            68
+          ],
+          "targetSize": 1.1,
+          "rotY": 0,
+          "tags": [
+            "equipment"
+          ]
+        },
+        {
+          "model": "light_tower",
+          "position": [
+            -60,
+            0,
+            80
+          ],
+          "targetSize": 13,
+          "rotY": 0
+        }
+      ]
+    }
+  },
+  "treeCount": 260,
+  "bollards": [
+    [
+      -42,
+      22
+    ],
+    [
+      -42,
+      -22
+    ],
+    [
+      32,
+      22
+    ],
+    [
+      32,
+      -22
+    ],
+    [
+      -25,
+      36
+    ],
+    [
+      -15,
+      36
+    ],
+    [
+      -5,
+      36
+    ],
+    [
+      5,
+      36
+    ],
+    [
+      15,
+      36
+    ],
+    [
+      -25,
+      61
+    ],
+    [
+      -15,
+      61
+    ],
+    [
+      -5,
+      61
+    ],
+    [
+      5,
+      61
+    ],
+    [
+      15,
+      61
+    ]
+  ],
+  "lightPoles": [
+    [
+      -30,
+      37
+    ],
+    [
+      -10,
+      37
+    ],
+    [
+      10,
+      37
+    ],
+    [
+      30,
+      37
+    ],
+    [
+      -30,
+      62
+    ],
+    [
+      -10,
+      62
+    ],
+    [
+      10,
+      62
+    ],
+    [
+      30,
+      62
+    ],
+    [
+      42,
+      -20
+    ],
+    [
+      42,
+      12
+    ],
+    [
+      -46,
+      -10
+    ],
+    [
+      -46,
+      18
+    ],
+    [
+      55,
+      75
+    ],
+    [
+      -72,
+      -12
+    ],
+    [
+      50,
+      -55
+    ],
+    [
+      -62,
+      -45
+    ],
+    [
+      -55,
+      70
+    ],
+    [
+      38,
+      70
+    ],
+    [
+      -50,
+      -5
+    ],
+    [
+      65,
+      20
+    ],
+    [
+      -25,
+      -72
+    ],
+    [
+      18,
+      -78
+    ],
+    [
+      -68,
+      -62
+    ],
+    [
+      65,
+      -65
+    ],
+    [
+      -42,
+      -85
+    ],
+    [
+      30,
+      -85
+    ],
+    [
+      0,
+      -88
+    ],
+    [
+      -80,
+      -55
+    ],
+    [
+      75,
+      -42
+    ],
+    [
+      -75,
+      80
+    ]
+  ],
+  "steelFrameworks": [],
+  "overheadPipes": [],
+  "warningSigns": [
+    [
+      -40,
+      22,
+      0
+    ],
+    [
+      30,
+      22,
+      3.14159
+    ],
+    [
+      -46,
+      0,
+      1.5708
+    ],
+    [
+      40,
+      0,
+      -1.5708
+    ],
+    [
+      -25,
+      36,
+      0
+    ],
+    [
+      15,
+      36,
+      0
+    ],
+    [
+      -25,
+      61,
+      0
+    ],
+    [
+      15,
+      61,
+      0
+    ]
+  ]
+}

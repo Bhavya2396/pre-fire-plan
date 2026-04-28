@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PRE-FIRE PLAN // Tank 101-A Emergency Response Simulation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><text y='26' font-size='28'>🔥</text></svg>" />
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <canvas id="viewport"></canvas>
+
+  <!-- LOADING -->
+  <div id="loading-screen">
+    <div id="loading-inner">
+      <div id="loading-title">PRE-FIRE PLAN</div>
+      <div id="loading-sub">TANK 101-A // EMERGENCY RESPONSE SIMULATION</div>
+      <div id="loading-bar-wrap"><div id="loading-bar"></div></div>
+      <div id="loading-status">Initializing...</div>
+    </div>
+  </div>
+
+  <!-- START -->
+  <div id="start-screen" class="hidden">
+    <div id="start-inner">
+      <div id="start-title">PRE-FIRE PLAN</div>
+      <div id="start-sub">FULL SURFACE FIRE — TANK 40-TT-FR-101A<br>FLOATING ROOF SINKING AT SHELL AREA</div>
+      <div class="divider"></div>
+      <div id="start-briefing">
+        <p>You are the shift operator on night patrol at Sector 40.<br>
+        A full-surface fire has erupted on Tank 101-A — 50,000 m³ petroleum crude.</p>
+        <p>Follow emergency procedures to isolate the tank, alert fire services,<br>
+        and coordinate the tactical response.</p>
+      </div>
+      <div class="divider"></div>
+      <div id="controls-grid">
+        <div><span class="k">W A S D</span> Move</div>
+        <div><span class="k">MOUSE</span> Look</div>
+        <div><span class="k">SHIFT</span> Sprint</div>
+        <div><span class="k">CLICK</span> Interact</div>
+        <div><span class="k">R</span> Open Radio</div>
+        <div><span class="k">C</span> Crouch</div>
+      </div>
+      <div id="start-btn">[ CLICK TO BEGIN SIMULATION ]</div>
+    </div>
+  </div>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div id="hud-top-left">
+      <div id="phase-label">PHASE 0 — PATROL</div>
+      <div id="timer">00:00</div>
+    </div>
+    <div id="hud-top-right">
+      <div id="step-counter">STEP 0/0</div>
+      <div id="warnings-counter">WARNINGS: 0</div>
+    </div>
+
+    <!-- Crosshair -->
+    <div id="crosshair">
+      <div class="ch ch-t"></div>
+      <div class="ch ch-b"></div>
+      <div class="ch ch-l"></div>
+      <div class="ch ch-r"></div>
+      <div id="ch-dot"></div>
+    </div>
+
+    <!-- Interaction prompt -->
+    <div id="interact-prompt" class="hidden">
+      <div id="interact-icon"></div>
+      <div id="interact-label">INTERACT</div>
+      <div id="interact-hint"></div>
+    </div>
+
+    <!-- Valve rotation UI -->
+    <div id="valve-ui" class="hidden">
+      <svg id="valve-ring" viewBox="0 0 120 120">
+        <circle cx="60" cy="60" r="54" fill="none" stroke="#333" stroke-width="4"/>
+        <circle id="valve-progress" cx="60" cy="60" r="54" fill="none" stroke="#ff6b1a" stroke-width="4" stroke-dasharray="339.292" stroke-dashoffset="339.292" stroke-linecap="butt" transform="rotate(-90 60 60)"/>
+      </svg>
+      <div id="valve-label">TURN VALVE</div>
+    </div>
+
+    <!-- Narration box -->
+    <div id="narration" class="hidden">
+      <div id="narration-speaker"></div>
+      <div id="narration-text"></div>
+    </div>
+
+    <!-- Checklist -->
+    <div id="checklist" class="hidden">
+      <div id="checklist-title">OPERATIONS RESPONSE</div>
+      <div id="checklist-items"></div>
+    </div>
+
+    <!-- Radio UI -->
+    <div id="radio-ui" class="hidden">
+      <div id="radio-display">
+        <div id="radio-channel-label">CH</div>
+        <div id="radio-channel-num">01</div>
+      </div>
+      <div id="radio-hint">VHF CHANNEL 8 // Press [1] to transmit</div>
+      <div id="radio-messages" class="hidden"></div>
+    </div>
+
+    <!-- Minimap -->
+    <div id="minimap-wrap">
+      <canvas id="minimap-canvas"></canvas>
+      <div id="minimap-label">SECTOR 40</div>
+    </div>
+
+    <!-- Objective direction arrow (off-screen indicator) -->
+    <div id="objective-arrow">▲</div>
+
+    <!-- Objective HUD -->
+    <div id="objective-hud">
+      <div id="objective-label"></div>
+      <div id="objective-distance"></div>
+    </div>
+
+    <!-- Equipment display -->
+    <div id="equipment-bar" class="hidden">
+      <div id="equip-items"></div>
+    </div>
+
+    <!-- Observe progress -->
+    <div id="observe-ui" class="hidden">
+      <div id="observe-ring-wrap">
+        <svg id="observe-ring" viewBox="0 0 100 100">
+          <circle cx="50" cy="50" r="44" fill="none" stroke="#333" stroke-width="3"/>
+          <circle id="observe-progress" cx="50" cy="50" r="44" fill="none" stroke="#22dd44" stroke-width="3" stroke-dasharray="276.46" stroke-dashoffset="276.46" stroke-linecap="butt" transform="rotate(-90 50 50)"/>
+        </svg>
+        <div id="observe-icon">&#128065;</div>
+      </div>
+      <div id="observe-label">INSPECTING...</div>
+    </div>
+
+    <!-- Heat proximity overlay -->
+    <div id="heat-overlay"></div>
+
+    <!-- Notification -->
+    <div id="notification" class="hidden"></div>
+  </div>
+
+  <!-- Score screen -->
+  <div id="score-screen" class="hidden">
+    <div id="score-inner">
+      <div id="score-title">SIMULATION COMPLETE</div>
+      <div class="divider"></div>
+      <div id="score-grid"></div>
+      <div id="score-grade"></div>
+      <div id="score-restart">[ CLICK TO RESTART ]</div>
+    </div>
+  </div>
+
+  <script type="module" src="/src/Game.js"></script>
+</body>
+</html>

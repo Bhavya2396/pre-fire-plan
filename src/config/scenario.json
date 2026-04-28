@@ -1,0 +1,171 @@
+{
+  "phases": {
+    "PATROL": { "name": "PHASE 0 — PATROL", "title": "PATROL" },
+    "OPS_RESPONSE": { "name": "PHASE 1 — OPERATIONS RESPONSE", "title": "OPERATIONS RESPONSE" },
+    "FIRST_TURNOUT": { "name": "PHASE 2 — 1ST TURNOUT", "title": "1ST TURNOUT TACTICAL" },
+    "SECOND_TURNOUT": { "name": "PHASE 3 — 2ND TURNOUT", "title": "2ND TURNOUT" },
+    "COMPLETE": { "name": "SIMULATION COMPLETE", "title": "COMPLETE" }
+  },
+  "phaseOrder": ["PATROL", "OPS_RESPONSE", "FIRST_TURNOUT", "SECOND_TURNOUT", "COMPLETE"],
+  "phaseSteps": {
+    "PATROL": [
+      { "id": "inspect_tank_a",      "text": "Walk over and inspect Tank 101-A",                 "proximity": { "pos": [-15, 1.7, 4],  "radius": 8.0 } },
+      { "id": "check_roof_drain_pre","text": "Check the roof drain valve on the south face",     "proximity": { "pos": [-15, 1.7, 5],  "radius": 7.0 } },
+      { "id": "return_to_control",   "text": "Return to the control point inside the dyke",     "proximity": { "pos": [0,   1.7, 20], "radius": 8.0 } }
+    ],
+    "OPS_RESPONSE": [
+      { "id": "sound_mcp_alarm", "text": "Sound the Manual Call Point (MCP) — raise plant alarm" },
+      { "id": "close_roof_drain", "text": "Close roof drain valve (Tank 101-A)" },
+      { "id": "close_dyke_valve", "text": "Close dyke containment valve" },
+      { "id": "isolate_manifold", "text": "Stop operations & isolate tank at manifold" },
+      { "id": "alert_fire_safety", "text": "Inform Fire & Safety (pick up radio)" },
+      { "id": "report_tank_data", "text": "Radio: Share tank data to SIC on Channel 8" },
+      { "id": "open_cooling_valve", "text": "Open cooling water isolation valve for Tank 101-B" },
+      { "id": "start_product_transfer", "text": "Radio: Initiate product transfer from Tank 101-A" }
+    ],
+    "FIRST_TURNOUT": [
+      { "id": "position_tender_1", "text": "Guide fire tender to Hydrant H-28", "proximity": { "pos": [-14.5, 1.7, 35], "radius": 5.5 } },
+      { "id": "connect_hose_1", "text": "Pick up the H-28 hose and connect it to the hydrant" },
+      { "id": "open_spray_101b", "text": "Open isolation valves — water spray on 101-B" },
+      { "id": "request_2nd_turnout", "text": "Radio: Request 2nd turnout on Channel 8" }
+    ],
+    "SECOND_TURNOUT": [
+      { "id": "position_tender_2", "text": "Guide 2nd tender to Hydrant H-20", "proximity": { "pos": [17.5, 1.7, 60], "radius": 5.5 } },
+      { "id": "connect_hose_2", "text": "Pick up the H-20 hose and connect it to the hydrant" },
+      { "id": "request_foam", "text": "Radio: Request foam nurser on Channel 8" },
+      { "id": "check_boilover", "text": "Inspect tank shell for boil-over signs" }
+    ]
+  },
+  "guidance": {
+    "inspect_tank_a": {
+      "speaker": "DISPATCH",
+      "text": "PATROL: Walk to Tank 101-A and complete a visual check of the south face."
+    },
+    "check_roof_drain_pre": {
+      "speaker": "DISPATCH",
+      "text": "PATROL: Confirm the roof drain valve looks normal — note its location for later."
+    },
+    "return_to_control": {
+      "speaker": "DISPATCH",
+      "text": "PATROL: Head back to the control point inside the dyke."
+    },
+    "sound_mcp_alarm": {
+      "speaker": "SHIFT-IN-CHARGE",
+      "text": "STEP 1: Raise the plant alarm. The MCP is on the control room wall — break glass."
+    },
+    "close_roof_drain": {
+      "speaker": "SHIFT-IN-CHARGE",
+      "text": "STEP 2: Roof drain on Tank 101-A. Closing it stops burning product reaching the sewer."
+    },
+    "close_dyke_valve": {
+      "speaker": "SHIFT-IN-CHARGE",
+      "text": "STEP 3: Dyke drain valve. Closing contains spillage inside the bund."
+    },
+    "isolate_manifold": {
+      "speaker": "SHIFT-IN-CHARGE",
+      "text": "STEP 4: Manifold isolation. Stop all transfers and apply LOTO on MV-101A."
+    },
+    "alert_fire_safety": {
+      "speaker": "SHIFT-IN-CHARGE",
+      "text": "STEP 5: Pick up the radio at the control station (south-east)."
+    },
+    "report_tank_data": {
+      "speaker": "SHIFT-IN-CHARGE",
+      "text": "STEP 6: Press R, Channel 8. Report level, temp, and isolation status to SIC."
+    },
+    "open_cooling_valve": {
+      "speaker": "SHIFT-IN-CHARGE",
+      "text": "STEP 7: Cooling water valve for adjacent Tank 101-B (east side)."
+    },
+    "start_product_transfer": {
+      "speaker": "SHIFT-IN-CHARGE",
+      "text": "STEP 8: Press R, Channel 8 — request product transfer from 101-A."
+    },
+    "position_tender_1": {
+      "speaker": "DISPATCH",
+      "text": "1st tender on Road 10. Guide it to Hydrant H-28."
+    },
+    "connect_hose_1": {
+      "speaker": "SIC",
+      "text": "Connect hoses H-28 → tender. Two 15m hoses + JRCP for foam."
+    },
+    "open_spray_101b": {
+      "speaker": "SIC",
+      "text": "Verify water spray ring on 101-B. Confirm coverage and shell temperature."
+    },
+    "request_2nd_turnout": {
+      "speaker": "SIC",
+      "text": "Press R, Channel 8 — request 2nd turnout with HEFG."
+    },
+    "position_tender_2": {
+      "speaker": "DISPATCH",
+      "text": "2nd tender on Road 12. Guide it to Hydrant H-20."
+    },
+    "connect_hose_2": {
+      "speaker": "SIC",
+      "text": "Connect hoses H-20 → 2nd tender. Set HEFG to 3% AFFF."
+    },
+    "request_foam": {
+      "speaker": "SIC",
+      "text": "Press R, Channel 8 — request foam nurser for 101-A."
+    },
+    "check_boilover": {
+      "speaker": "SIC",
+      "text": "Look at Tank 101-A shell for 3 seconds. Watch for paint discoloration."
+    }
+  },
+  "radioMessages": {
+    "OPS_RESPONSE": [
+      {
+        "stepId": "report_tank_data",
+        "text": "REPORT: Tank 101-A, Level 12.3m, Temp 42°C, Transfer STOPPED",
+        "response": "Received. SIC en route. Continue cooling Tank 101-B."
+      },
+      {
+        "stepId": "start_product_transfer",
+        "text": "REQUEST: Begin product transfer from 101-A",
+        "response": "Acknowledged. Transfer being aligned. Await first turnout."
+      }
+    ],
+    "FIRST_TURNOUT": [
+      {
+        "stepId": "request_2nd_turnout",
+        "text": "REQUEST: Send 2nd turnout with HEFG",
+        "response": "2nd turnout dispatched. ETA 4 minutes via Road 12."
+      }
+    ],
+    "SECOND_TURNOUT": [
+      {
+        "stepId": "request_foam",
+        "text": "REQUEST: Send foam nurser for 101-A",
+        "response": "Foam nurser dispatched. Inspect tank shell for boil-over next."
+      }
+    ]
+  },
+  "narrations": {
+    "patrol_intro": {
+      "speaker": "DISPATCH",
+      "text": "Welcome trainee. Night shift patrol of Tank 101-A. Walk toward the tank farm."
+    },
+    "fire_alert": {
+      "speaker": "EMERGENCY",
+      "text": "FIRE on Tank 101-A! Your job — execute the on-site emergency response procedure in order."
+    },
+    "ops_response_intro": {
+      "speaker": "SHIFT-IN-CHARGE",
+      "text": "Phase 1: OPERATIONS RESPONSE. Eight steps. We raise the alarm, contain the spill, isolate the tank, then call Fire & Safety."
+    },
+    "first_turnout_intro": {
+      "speaker": "DISPATCH",
+      "text": "Phase 2: FIRST TURNOUT. The fire tender is on Road 10. Position it at Hydrant H-28 and begin foam attack."
+    },
+    "second_turnout_intro": {
+      "speaker": "DISPATCH",
+      "text": "Phase 3: SECOND TURNOUT. Heavy equipment on Road 12. Set up HEFG at H-20 and watch for boil-over."
+    },
+    "complete_intro": {
+      "speaker": "INSTRUCTOR",
+      "text": "Simulation complete. Review your timing and decisions on the score screen. Well done."
+    }
+  }
+}

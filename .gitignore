@@ -9,3 +9,4 @@ dist/
 .idea/
 .vscode/
 *.local
+public/env/industrial_8k.hdr
